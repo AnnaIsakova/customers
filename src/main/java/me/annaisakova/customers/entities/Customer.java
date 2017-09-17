@@ -11,18 +11,14 @@ public class Customer {
     @Id
     @GeneratedValue
     private long id;
-
     private String name;
-
-    @Column(nullable = false)
     private String surname;
-
     private String phone;
 
     public Customer() {
     }
 
-    public Customer(String name, String surname, String phone) {
+    public Customer(long id, String name, String surname, String phone) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
