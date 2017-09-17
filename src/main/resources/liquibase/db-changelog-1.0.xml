@@ -13,7 +13,7 @@
     <changeSet id="create_customers" author="anna.isakova">
         <createTable tableName="customers">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false" unique="true"/>
             </column>
             <column name="name" type="varchar(255)">
                 <constraints nullable="false" />

@@ -1,6 +1,7 @@
 package me.annaisakova.customers.entities;
 
 
+
 import javax.persistence.*;
 
 
@@ -77,5 +78,15 @@ public class Customer {
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + phone.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }
