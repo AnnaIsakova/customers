@@ -3,8 +3,12 @@ package me.annaisakova.customers.repositories;
 
 import me.annaisakova.customers.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 
 public interface CustomerRepository extends JpaRepository<Customer, Long>{
-    //no need to define new methods for CRUD, the already defined in JpaRepository
+
+    @Query("SELECT c FROM Customer c WHERE c.phone = :phone")
+    Customer findByPhone(@Param("phone") String phone);
 }

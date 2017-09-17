@@ -31,12 +31,23 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public void delete(Customer customer) {
-        customerRepository.delete(customer);
+    public void delete(long id) {
+        Customer cusToDelete = customerRepository.getOne(id);
+        customerRepository.delete(cusToDelete);
+    }
+
+    @Override
+    public Customer findById(long id) {
+        return customerRepository.getOne(id);
     }
 
     @Override
     public List<Customer> findAll() {
         return customerRepository.findAll();
+    }
+
+    @Override
+    public boolean exists(Customer customer) {
+        return customerRepository.findByPhone(customer.getPhone()) != null;
     }
 }
