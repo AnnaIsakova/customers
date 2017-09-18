@@ -76,11 +76,13 @@ public class CustomerController {
     public ResponseEntity<Void> edit(@RequestBody Customer customer, BindingResult bindingResult){
         LOG.info("editing customer {}", customer);
 
+
         Customer currCustomer = customerService.findById(customer.getId());
+
         if (currCustomer == null){
             LOG.info("customer with id {} not found", customer.getId());
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-        } else if (customerService.exists(customer) && currCustomer.getId() != customer.getId()){
+        } else if (customerService.exists(customer) && !currCustomer.getPhone().equals(customer.getPhone())){
             LOG.info("customer with phone {} already exists", customer.getPhone());
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
