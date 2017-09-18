@@ -12,7 +12,6 @@ import me.annaisakova.customers.services.CustomerService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootContextLoader;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -23,9 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
@@ -44,8 +41,6 @@ public class CrudStepsDefinition {
 
     @Autowired
     CustomerService customerService;
-
-    private HttpHeaders httpHeaders = new HttpHeaders();
 
     @Before
     public void init(){
@@ -82,6 +77,11 @@ public class CrudStepsDefinition {
     @When("^client request GET (.*)$")
     public void performGetOnResourceUri(String resourceUri) throws Exception {
         this.resultActions = this.mockMvc.perform(get(resourceUri));
+    }
+
+    @When("^client request DELETE (.*)$")
+    public void performDeleteOnResourceUri(String resourceUri) throws Exception {
+        this.resultActions = this.mockMvc.perform(delete(resourceUri));
     }
 
     @Then("^the response code should be (\\d*)$")

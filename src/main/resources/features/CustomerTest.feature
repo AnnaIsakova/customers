@@ -101,3 +101,12 @@ Feature: CRUD on customers
     {"id":"4","name":"Lemmy","surname":"Kilmister","phone":"1111111111"}
     """
     Then the response code should be 409
+
+#    =================DELETE=================
+  Scenario: Delete customer success
+    When client request DELETE /api/customers/4
+    Then the response code should be 200
+
+  Scenario: Delete customer not found
+    When client request DELETE /api/customers/0
+    Then the response code should be 404
