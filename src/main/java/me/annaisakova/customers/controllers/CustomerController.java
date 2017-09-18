@@ -2,6 +2,7 @@ package me.annaisakova.customers.controllers;
 
 
 import me.annaisakova.customers.entities.Customer;
+import me.annaisakova.customers.services.CustomerService;
 import me.annaisakova.customers.services.impl.CustomerServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ public class CustomerController {
     private final Logger LOG = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
-    CustomerServiceImpl customerService;
+    CustomerService customerService;
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody

@@ -19,7 +19,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(long id, String name, String surname, String phone) {
+    public Customer(String name, String surname, String phone) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
