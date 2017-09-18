@@ -1,14 +1,17 @@
 package me.annaisakova.customers.controllers;
 
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import me.annaisakova.customers.entities.Customer;
 import me.annaisakova.customers.services.CustomerService;
 import me.annaisakova.customers.services.impl.CustomerServiceImpl;
+import me.annaisakova.customers.validators.CustomerValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +24,9 @@ public class CustomerController {
 
     @Autowired
     CustomerService customerService;
+
+    @Autowired
+    CustomerValidator validator;
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -46,8 +52,14 @@ public class CustomerController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> add(@RequestBody Customer customer){
+    public ResponseEntity<Void> add(@RequestBody Customer customer, BindingResult bindingResult){
         LOG.info("adding customer {}", customer);
+
+        validator.validate(customer, bindingResult);
+        if (bindingResult.hasErrors()){
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+
         if (customerService.exists(customer)){
             LOG.info("customer with phone {} already exists", customer.getPhone());
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);

@@ -3,7 +3,7 @@ Feature: CRUD on customers
   Scenario: Create a valid customer
     When client request POST /api/customers with json data:
     """
-    {"name":"Tarja","surname":"Turunen","phone":"888"}
+    {"name":"Tarja","surname":"Turunen","phone":"1234567890"}
     """
     Then the response code should be 201
 
