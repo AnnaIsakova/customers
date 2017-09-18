@@ -7,13 +7,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 @Component
 public class CustomerValidator implements Validator{
-
-    private static final String VALID_PHONE_REGEX_1 = "\\d{10}"; //1234567890
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -32,7 +27,8 @@ public class CustomerValidator implements Validator{
     }
 
     private boolean isValidPhone(String phone) {
-        if (phone.matches("\\d{10}")) return true;
+        //1234567890
+        if (phone != null && phone.matches("\\d{10}")) return true;
         return false;
     }
 }
