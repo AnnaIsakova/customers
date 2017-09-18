@@ -28,6 +28,7 @@ public class CustomerController {
     @Autowired
     CustomerValidator validator;
 
+    //  ========================GET========================
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<List<Customer>> getAll(){
@@ -37,6 +38,7 @@ public class CustomerController {
             LOG.info("no customers found");
             return new ResponseEntity<List<Customer>>(HttpStatus.NO_CONTENT);
         }
+        LOG.info(customers.toString());
         return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
     }
 
@@ -51,6 +53,7 @@ public class CustomerController {
         return new ResponseEntity<Customer>(customer, HttpStatus.OK);
     }
 
+    //    ========================ADD========================
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> add(@RequestBody Customer customer, BindingResult bindingResult){
         LOG.info("adding customer {}", customer);
@@ -68,21 +71,30 @@ public class CustomerController {
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
+    //    ========================UPDATE========================
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Void> edit(@RequestBody Customer customer){
+    public ResponseEntity<Void> edit(@RequestBody Customer customer, BindingResult bindingResult){
         LOG.info("editing customer {}", customer);
+
         Customer currCustomer = customerService.findById(customer.getId());
         if (currCustomer == null){
             LOG.info("customer with id {} not found", customer.getId());
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-        } else if (customerService.exists(customer)){
+        } else if (customerService.exists(customer) && currCustomer.getId() != customer.getId()){
             LOG.info("customer with phone {} already exists", customer.getPhone());
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
+
+        validator.validate(customer, bindingResult);
+        if (bindingResult.hasErrors()){
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+
         customerService.update(customer);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    //    ========================DELETE========================
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable int id){
         LOG.info("deleting customer with id {}", id);

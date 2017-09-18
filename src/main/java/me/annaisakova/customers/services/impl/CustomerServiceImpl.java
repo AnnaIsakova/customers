@@ -37,6 +37,11 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
+    public void deleteAll() {
+        customerRepository.deleteAll();
+    }
+
+    @Override
     public Customer findById(long id) {
         return customerRepository.findOne(id);
     }
