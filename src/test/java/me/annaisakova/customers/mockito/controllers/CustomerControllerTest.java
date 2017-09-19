@@ -2,6 +2,7 @@ package me.annaisakova.customers.mockito.controllers;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import me.annaisakova.customers.controllers.CustomerController;
 import me.annaisakova.customers.entities.Customer;
 import me.annaisakova.customers.services.CustomerService;
 import me.annaisakova.customers.validators.CustomerValidator;

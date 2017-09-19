@@ -1,4 +1,4 @@
-package me.annaisakova.customers.mockito.controllers;
+package me.annaisakova.customers.controllers;
 
 
 import me.annaisakova.customers.entities.Customer;
