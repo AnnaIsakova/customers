@@ -22,7 +22,6 @@ app.controller('CustomersController', function($scope, $filter, $http, CrudServi
         CrudService.createObj('customers', data)
             .then(
                 function(d) {
-                    $scope.customers = d;
                     $scope.errorMessage = null;
                     fetchAll();
                 },
@@ -43,7 +42,6 @@ app.controller('CustomersController', function($scope, $filter, $http, CrudServi
         CrudService.updateObj('customers', data)
             .then(
                 function(d) {
-                    $scope.customers = d;
                     $scope.errorMessage = null;
                     fetchAll();
                 },
@@ -66,7 +64,6 @@ app.controller('CustomersController', function($scope, $filter, $http, CrudServi
         CrudService.deleteObj('customers', id)
             .then(
                 function(d) {
-                    $scope.customers = d;
                     $scope.errorMessage = null;
                     fetchAll();
                 },
@@ -79,6 +76,11 @@ app.controller('CustomersController', function($scope, $filter, $http, CrudServi
     }
 
     $scope.saveCustomer = function(data, id) {
+
+        if (!validateCustomer(data)){
+            $scope.customers.pop();
+            return;
+        }
 
         if (addingCustomer){
             createOne(data);
@@ -106,4 +108,17 @@ app.controller('CustomersController', function($scope, $filter, $http, CrudServi
         $scope.customers.push($scope.inserted);
         addingCustomer = true;
     };
+
+    $scope.checkName = function(data) {
+        console.log("DATA: " + data)
+        if (data == '' || data == undefined) {
+            return "<small style='color: darkred'>Required field</small>";
+        }
+    };
+
+    function validateCustomer(data) {
+        var validName = data.name != undefined && data.name != null && data.name != '';
+        var validPhone = data.phone != undefined && /^([0-9]{10})$/.test(data.phone);;
+        return (validName && validPhone);
+    }
 });

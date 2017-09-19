@@ -25,17 +25,17 @@
                 </tr>
                 <tr ng-repeat="customer in customers">
                     <td>
-                        <span editable-text="customer.name" e-name="name" e-form="rowform" onbeforesave="checkName($data, customer.id)" e-required>
-                            {{ customer.name || 'empty' }}
+                        <span editable-text="customer.name" e-name="name" e-form="rowform" onbeforesave="checkName($data)" e-required>
+                            {{ customer.name }}
                         </span>
                     </td>
                     <td>
-                        <span editable-text="customer.surname" e-name="surname" e-form="rowform" onbeforesave="checkName($data, customer.id)">
+                        <span editable-text="customer.surname" e-name="surname" e-form="rowform">
                             {{ customer.surname || 'empty' }}
                         </span>
                     </td>
                     <td>
-                        <span editable-text="customer.phone" e-name="phone" e-form="rowform" onbeforesave="checkName($data, customer.id)" e-ui-mask="(999) 999-9999">
+                        <span editable-text="customer.phone" e-name="phone" e-form="rowform" onbeforesave="checkName($data)" e-ui-mask="(999) 999-9999">
                             {{ customer.phone | tel }}
                          </span>
                     </td>
