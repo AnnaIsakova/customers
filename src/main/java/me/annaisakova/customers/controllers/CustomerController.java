@@ -58,6 +58,7 @@ public class CustomerController {
 
         validator.validate(customer, bindingResult);
         if (bindingResult.hasErrors()){
+            LOG.info("invalid customer {}", customer);
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
 
