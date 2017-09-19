@@ -11,6 +11,7 @@
             <h3>
                 Customers
             </h3>
+            <small>by Anna Isakova. You can find source code <a href="https://github.com/AnnaIsakova/customers">here</a></small>
             <div class="alert alert-danger" ng-if="errorMessage">
                 <strong>Oops!</strong> {{errorMessage}}
             </div>
@@ -59,7 +60,7 @@
             <button class="btn btn-default" ng-click="addCustomer()">Add row</button><br/>
 
             <small>
-                *required fields: name, phone number (10 digits)
+                *required fields: name, phone number (10 digits without symbols)
             </small>
         </div>
     </div>

@@ -20,7 +20,7 @@
             </column>
             <column name="surname" type="varchar(255)"/>
             <column name="phone" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false" unique="true"/>
             </column>
         </createTable>
     </changeSet>
