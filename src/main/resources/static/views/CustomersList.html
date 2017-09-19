@@ -35,8 +35,8 @@
                         </span>
                     </td>
                     <td>
-                        <span editable-text="customer.phone" e-name="phone" e-form="rowform" onbeforesave="checkName($data, customer.id)">
-                            {{ customer.phone || 'empty' }}
+                        <span editable-text="customer.phone" e-name="phone" e-form="rowform" onbeforesave="checkName($data, customer.id)" e-ui-mask="(999) 999-9999">
+                            {{ customer.phone | tel }}
                          </span>
                     </td>
                     <td style="white-space: nowrap">
@@ -59,9 +59,6 @@
 
             <button class="btn btn-default" ng-click="addCustomer()">Add row</button><br/>
 
-            <small>
-                *required fields: name, phone number (10 digits without symbols)
-            </small>
         </div>
     </div>
 </body>

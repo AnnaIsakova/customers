@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('app',['ui.router', 'xeditable']);
+var app = angular.module('app',['ui.router', 'xeditable', 'ui.mask']);
 
 app.config(function($stateProvider) {
 
