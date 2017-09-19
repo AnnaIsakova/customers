@@ -98,6 +98,10 @@ app.controller('CustomersController', function($scope, $filter, $http, CrudServi
         deleteOne(index, id);
     };
 
+    $scope.cancelUndef = function (index) {
+        $scope.customers.splice(index, 1);
+    };
+
     // add user
     $scope.addCustomer = function() {
         $scope.inserted = {
