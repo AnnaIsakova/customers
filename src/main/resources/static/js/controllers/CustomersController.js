@@ -60,11 +60,12 @@ app.controller('CustomersController', function($scope, $filter, $http, CrudServi
             );
     }
 
-    function deleteOne(id){
+    function deleteOne(index, id){
         CrudService.deleteObj('customers', id)
             .then(
                 function(d) {
                     $scope.errorMessage = null;
+                    $scope.customers.splice(index, 1);
                     fetchAll();
                 },
                 function(errResponse){
@@ -93,9 +94,8 @@ app.controller('CustomersController', function($scope, $filter, $http, CrudServi
     };
 
     // remove user
-    $scope.removeCustomer = function(index) {
-        $scope.customers.splice(index, 1);
-        deleteOne(index);
+    $scope.removeCustomer = function(index, id) {
+        deleteOne(index, id);
     };
 
     // add user

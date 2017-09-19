@@ -51,7 +51,7 @@
                         </form>
                         <div class="buttons" ng-show="!rowform.$visible">
                             <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-                            <button class="btn btn-danger" ng-click="removeCustomer(customer.id)">del</button>
+                            <button class="btn btn-danger" ng-click="removeCustomer($index, customer.id)">del</button>
                         </div>
                     </td>
                 </tr>
