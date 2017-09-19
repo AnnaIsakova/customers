@@ -1,4 +1,4 @@
-package me.annaisakova.customers;
+package me.annaisakova.customers.mockito;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

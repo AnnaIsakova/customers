@@ -1,9 +1,10 @@
-package me.annaisakova.customers.controllers;
+package me.annaisakova.customers.mockito.controllers;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.annaisakova.customers.entities.Customer;
 import me.annaisakova.customers.services.CustomerService;
+import me.annaisakova.customers.validators.CustomerValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +33,9 @@ public class CustomerControllerTest {
 
     @Mock
     private CustomerService customerService;
+
+    @Mock
+    private CustomerValidator validator;
 
     @InjectMocks
     private CustomerController customerController;
