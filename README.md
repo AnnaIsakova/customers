@@ -1,5 +1,5 @@
 <h2>RESTful CRUD application with Spring Boot and AngularJS</h2>
-    <p>Live app: </p>
+    <p>Live app: http://customers.annaisakova.me/</p>
     <h3>Back-end technologies:</h3>
     <ul>
         <li>Spring Boot 1.5</li>
